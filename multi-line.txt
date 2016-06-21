@@ -1,0 +1,5 @@
+some randome text file
+
+that has multiple lines
+
+and i need to count the number of lines
