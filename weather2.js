@@ -66,11 +66,16 @@ function getWeather(city, callback) {
       return;
     }
     // convert the body in JSON format to a JS object
+  try {
     var data = JSON.parse(body);
-    if (data.cod === '404') {
+    if (Number(data.cod) >= 400) {
       callback(new Error('No weather info'));
       return;
     }
+  } catch (jsonParseError) {
+    callback(jsonParseError);
+    return;
+  }
     // call the callback, passing null for err to signal success
     callback(null, data);
   });
